@@ -20,20 +20,40 @@ export class WeatherAPI extends RESTDataSource<Context> {
     request.params.set('APPID', this.apiKey);
   }
 
-  async getCurrentWeatherById(id: string, units?: Metric) {
+  async currentWeatherById(id: string, units?: Metric) {
     return this.get(`weather?id=${id}&units=${this.getUnits(units)}`);
   }
 
-  async getCurrentWeatherByName(cityName: string, countryCode: string, units?: Metric) {
+  async currentWeatherByName(cityName: string, countryCode: string, units?: Metric) {
     return this.get(`weather?q=${cityName},${countryCode}&units=${this.getUnits(units)}`);
   }
 
-  async getCurrentWeatherByCoordinates(lat: number, lon: number, units?: Metric) {
+  async currentWeatherByCoordinates(lat: number, lon: number, units?: Metric) {
     return this.get(`weather?lat=${lat}&lon=${lon}&units=${this.getUnits(units)}`);
   }
 
-  async getCurrentWeatherByIdGroup(ids: string[], units?: Metric) {
+  async currentWeatherByZipCode(zipCode: string, countryCode: string, units?: Metric) {
+    return this.get(`weather?zip=${zipCode},${countryCode}&units=${this.getUnits(units)}`);
+  }
+
+  async currentWeatherByIdGroup(ids: string[], units?: Metric) {
     return this.get(`group?id=${ids.join(',')}&units=${this.getUnits(units)}`);
+  }
+
+  async fiveDayWeatherById(id: string, units?: Metric) {
+    return this.get(`forecast?id=${id}&units=${this.getUnits(units)}`);
+  }
+
+  async fiveDayWeatherByName(cityName: string, countryCode: string, units?: Metric) {
+    return this.get(`forecast?q=${cityName},${countryCode}&units=${this.getUnits(units)}`);
+  }
+
+  async fiveDayWeatherByCoordinates(lat: number, lon: number, units?: Metric) {
+    return this.get(`forecast?lat=${lat}&lon=${lon}&units=${this.getUnits(units)}`);
+  }
+
+  async fiveDayWeatherByZipCode(zipCode: string, countryCode: string, units?: Metric) {
+    return this.get(`forecast?zip=${zipCode},${countryCode}&units=${this.getUnits(units)}`);
   }
 
   private getUnits(value?: Metric): Metric {

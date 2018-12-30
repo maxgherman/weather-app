@@ -9,25 +9,56 @@ export const resolvers: Resolvers = {
     currentWeatherById: async (_: {},
       args: { id: string, units?: Metric }, context) => {
       return context.dataSources.weatherAPI
-            .getCurrentWeatherById(args.id, args.units);
+            .currentWeatherById(args.id, args.units);
     },
 
     currentWeatherByName: async (_: {},
       args: { cityName: string, countryCode: string, units?: Metric }, context) => {
       return context.dataSources.weatherAPI
-            .getCurrentWeatherByName(args.cityName, args.countryCode, args.units);
+            .currentWeatherByName(args.cityName, args.countryCode, args.units);
     },
 
     currentWeatherByCoordinates:  async (_: {},
       args: { lat: number, lon: number, units?: Metric }, context) => {
       return context.dataSources.weatherAPI
-            .getCurrentWeatherByCoordinates(args.lat, args.lon, args.units);
+            .currentWeatherByCoordinates(args.lat, args.lon, args.units);
+    },
+
+    currentWeatherByZipCode: async(_:{},
+      args: { zipCode: string, countryCode: string, units?: Metric }, context) => {
+      return context.dataSources.weatherAPI
+            .currentWeatherByZipCode(args.zipCode, args.countryCode, args.units);
     },
 
     currentWeatherByIdGroup: async(_:{},
       args: { ids: string[], units?: Metric }, context) => {
       return context.dataSources.weatherAPI
-            .getCurrentWeatherByIdGroup(args.ids, args.units);
+            .currentWeatherByIdGroup(args.ids, args.units);
+    },
+
+    fiveDayWeatherById: async(_:{},
+      args: { id: string, units?: Metric }, context) => {
+      return context.dataSources.weatherAPI
+            .fiveDayWeatherById(args.id, args.units);
+    },
+
+    fiveDayWeatherByName: async (_: {},
+      args: { cityName: string, countryCode: string, units?: Metric }, context) => {
+      return context.dataSources.weatherAPI
+            .fiveDayWeatherByName(args.cityName, args.countryCode, args.units);
+    },
+
+    fiveDayWeatherByCoordinates:  async (_: {},
+      args: { lat: number, lon: number, units?: Metric }, context) => {
+      return context.dataSources.weatherAPI
+            .fiveDayWeatherByCoordinates(args.lat, args.lon, args.units);
+    },
+
+    fiveDayWeatherByZipCode: async(_:{},
+      args: { zipCode: string, countryCode: string, units?: Metric }, context) => {
+      return context.dataSources.weatherAPI
+            .fiveDayWeatherByZipCode(args.zipCode, args.countryCode, args.units);
     }
+
   } as IResolverObject<{}, Context>,
 };
