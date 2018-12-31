@@ -56,6 +56,22 @@ export class WeatherAPI extends RESTDataSource<Context> {
     return this.get(`forecast?zip=${zipCode},${countryCode}&units=${this.getUnits(units)}`);
   }
 
+  async sixteenDayWeatherById(id: string, units?: Metric) {
+    return this.get(`forecast/daily?id=${id}&units=${this.getUnits(units)}`);
+  }
+
+  async sixteenDayWeatherByName(cityName: string, countryCode: string, units?: Metric) {
+    return this.get(`forecast/daily?q=${cityName},${countryCode}&units=${this.getUnits(units)}`);
+  }
+
+  async sixteenDayWeatherByCoordinates(lat: number, lon: number, units?: Metric) {
+    return this.get(`forecast/daily?lat=${lat}&lon=${lon}&units=${this.getUnits(units)}`);
+  }
+
+  async sixteenDayWeatherByZipCode(zipCode: string, countryCode: string, units?: Metric) {
+    return this.get(`forecast/daily?zip=${zipCode},${countryCode}&units=${this.getUnits(units)}`);
+  }
+
   private getUnits(value?: Metric): Metric {
     return value || this.defaultMetric
   }

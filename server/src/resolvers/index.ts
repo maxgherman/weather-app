@@ -58,7 +58,33 @@ export const resolvers: Resolvers = {
       args: { zipCode: string, countryCode: string, units?: Metric }, context) => {
       return context.dataSources.weatherAPI
             .fiveDayWeatherByZipCode(args.zipCode, args.countryCode, args.units);
-    }
+    },
+
+    // Paid accounts only
+
+    // sixteenDayWeatherById: async(_:{},
+    //   args: { id: string, units?: Metric }, context) => {
+    //   return context.dataSources.weatherAPI
+    //         .sixteenDayWeatherById(args.id, args.units);
+    // },
+
+    // sixteenDayWeatherByName: async (_: {},
+    //   args: { cityName: string, countryCode: string, units?: Metric }, context) => {
+    //   return context.dataSources.weatherAPI
+    //         .sixteenDayWeatherByName(args.cityName, args.countryCode, args.units);
+    // },
+
+    // sixteenDayWeatherByCoordinates:  async (_: {},
+    //   args: { lat: number, lon: number, units?: Metric }, context) => {
+    //   return context.dataSources.weatherAPI
+    //         .sixteenDayWeatherByCoordinates(args.lat, args.lon, args.units);
+    // },
+
+    // sixteenDayWeatherByZipCode: async(_:{},
+    //   args: { zipCode: string, countryCode: string, units?: Metric }, context) => {
+    //   return context.dataSources.weatherAPI
+    //         .sixteenDayWeatherByZipCode(args.zipCode, args.countryCode, args.units);
+    // }
 
   } as IResolverObject<{}, Context>,
 };
