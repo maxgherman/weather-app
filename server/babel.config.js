@@ -17,9 +17,15 @@ module.exports = api => {
         plugins: [
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-proposal-object-rest-spread",
-            ["babel-plugin-webpack-alias", {
-                "config": "alias.config.js",
-                "findConfig": true
+            [require.resolve('babel-plugin-module-resolver'), {
+                root: ["."],
+                alias: {
+                    '@common': './src/common',
+                    '@data-sources': './src/data-sources',
+                    '@resolvers': './src/resolvers',
+                    '@type-definitions': './src/type-definitions',
+                    '@utils': './src/utils'
+                }
             }]
         ]
     }
